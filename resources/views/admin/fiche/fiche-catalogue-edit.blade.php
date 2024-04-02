@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                             <div class="card-body">
                                                        
-                            <form action="{{url('/fiche/fiche-catalogue-update/' .$catalogue->id)}}" method="post"  > 
+                            <form action="{{url('/fiche/fiche-catalogue-update/' .$catalogue->id)}}" method="post" enctype="multipart/form-data" > 
                             @method('PUT')
                             {{csrf_field()}}
                             
@@ -57,8 +57,26 @@
                                 @if($catalogue->file_pdf)
                                     <embed src="{{asset('public/catalogue/'.$catalogue->file_pdf)}}" type="application/pdf" style="width:600px; height:200px;" alt=""/>
                                 @endif 
+
+                                <div class="dropify-wrapper">
+    <div class="dropify-preview">
+        <span class="dropify-render">
+            <embed src="{{ asset('public/catalogue/'.$catalogue->file_pdf) }}" type="application/pdf" style="width:600px; height:200px;" alt=""/>
+        </span>
+    </div>
+    <div class="dropify-infos">
+        <div class="dropify-infos-inner">
+            <p class="dropify-filename">
+                <span class="file-icon"></span>
+                <span class="dropify-filename-inner">{{ $catalogue->file_pdf }}</span>
+            </p>
+            <p class="dropify-infos-message">Click to replace the file</p>
+        </div>
+    </div>
+    <input type="file" name="file_pdf" accept="application/pdf" class="dropify" data-default-file="{{ asset('public/catalogue/'.$catalogue->file_pdf) }}">
+    <button type="button" class="dropify-clear">Remove</button>
+</div>
                   
-                                <div class="dropify-wrapper"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input  type="file"  name="file_pdf" multiple accept="application/pdf" class="dropify"><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div>
                                 <button href="{{asset("/tables/catalogue")}}"  class="btn btn-primary mb-15" type="submit" style="position:relative; left:900px; width: 100px; height: 40px;">
                                     <i class="icon wb-plus" aria-hidden="true" ></i> Update 
                                 </button>

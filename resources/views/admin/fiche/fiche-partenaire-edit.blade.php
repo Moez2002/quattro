@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                             <div class="card-body">
                                                        
-                            <form action="{{url('/fiche/fiche-partenaire-update/' .$partenaire->id)}}" method="post"  > 
+                            <form action="{{url('/fiche/fiche-partenaire-update/' .$partenaire->id)}}" method="post" enctype="multipart/form-data" > 
                             @method('PUT')
                             {{csrf_field()}}
                             

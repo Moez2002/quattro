@@ -26,13 +26,13 @@ class cataloguecontroller extends Controller
     }
     public function insert5(request $request){
         $request->validate([
-            'file_pdf' => 'required|mimes:pdf|max:2048', // Validation rule for PDF files
+            'file_pdf' => 'required|mimes:pdf|max:2048', 
         ]);
     
         if ($request->hasFile('file_pdf')) {
             $file_pdf = $request->file('file_pdf');
-            $pdfFileName = time() . '.' . $file_pdf->getClientOriginalExtension(); // Generate unique file name
-            $file_pdf->move(public_path('catalogue'), $pdfFileName); // Move the uploaded file to the public/partenaire directory
+            $pdfFileName = time() . '.' . $file_pdf->getClientOriginalExtension(); 
+            $file_pdf->move(public_path('catalogue'), $pdfFileName); 
         }
 
 
@@ -40,7 +40,7 @@ class cataloguecontroller extends Controller
         $catalogue=new catalogueModel;
         $catalogue->title=['en'=>$request->title, 'fr'=>$request->title_fr];
         $catalogue->année= trim($request->année);
-        $catalogue->file_pdf= trim($request->file_pdf);
+        
         $catalogue->file_pdf = $pdfFileName;
         $catalogue->created_by = Auth::User()->id;
         $catalogue->save();
@@ -68,23 +68,23 @@ class cataloguecontroller extends Controller
 
         
     }
-    public function update( request $request, $id){ 
-       
-       
-        $catalogue=catalogueModel::getSingle($id);
+    public function update(Request $request, $id)
+    { 
+        $catalogue = catalogueModel::getSingle($id);
+    
+        $catalogue->title = ['en' => $request->input('title'), 'fr' => $request->input('title_fr')];
+    
         
-        $catalogue->title = $request->input('title');
-        
-        $catalogue->setTranslation('title', 'fr', $request->input('title_fr'));
-        
-        $catalogue->année = $request->input('année');
-        $catalogue->file_pdf = $request->input('file_pdf');
-        
-        $catalogue->update();
-
-     
+        if ($request->hasFile('file_pdf')) {
+            $file_pdf = $request->file('file_pdf');
+            $pdfFileName = time() . '.' . $file_pdf->getClientOriginalExtension();
+            $file_pdf->move(public_path('catalogue'), $pdfFileName);
+            $catalogue->file_pdf = $pdfFileName;
+        }
+    
+        $catalogue->save();
+    
         return redirect('/tables/catalogue');
-
     }
     public function destroy($id){ 
         $catalogue=catalogueModel::getSingle($id);

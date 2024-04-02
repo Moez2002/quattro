@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                             <div class="card-body">
                                                        
-                            <form action="{{url('/fiche/fiche-produit-update/' .$produit->id)}}" method="post"  > 
+                            <form action="{{url('/fiche/fiche-produit-update/' .$produit->id)}}" method="post" enctype="multipart/form-data" > 
                             @method('PUT')
                             {{csrf_field()}}
                             
@@ -108,7 +108,8 @@
                                 <p class="dropify-infos-message">Drag and drop or click to replace</p>
                             </div>
                         </div>
-                        <input type="file" name="images[]" class="form-control dropify" accept="image/*" data-default-file="{{ asset('public/gallery'.($key+1).'/'.$image->image) }}">
+                        <input type="file" name="images[]" class="form-control dropify" accept="image/*">
+                        <input type="hidden" name="gallery_ids[]" value="{{ $image->id }}"> <!-- Add hidden input for gallery ID -->
                         <button type="button" class="dropify-clear">Remove</button>
                     </div>
                 </div>
@@ -136,6 +137,7 @@
                         </div>
                     </div>
                     <input type="file" name="images[]" class="form-control dropify" accept="image/*">
+                    <input type="hidden" name="gallery_ids[]" value=""> <!-- Add hidden input for gallery ID -->
                     <button type="button" class="dropify-clear">Remove</button>
                 </div>
             </div>

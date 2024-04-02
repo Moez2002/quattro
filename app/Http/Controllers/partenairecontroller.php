@@ -36,8 +36,8 @@ class partenairecontroller extends Controller
         
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension(); // Generate unique file name
-                $image->move(public_path('partenaire'), $imageName); // Move the uploaded file to the public/actualités directory
+                $imageName = time() . '.' . $image->getClientOriginalExtension(); 
+                $image->move(public_path('partenaire'), $imageName); 
             }
     
             $title=trim($request->title);
@@ -70,22 +70,38 @@ class partenairecontroller extends Controller
     
             
         }
-        public function update( request $request, $id){ 
-           
-           
-            $partenaire=partenaireModel::getSingle($id);
+        public function update(Request $request, $id)
+        { 
+            $partenaire = partenaireModel::getSingle($id);
+            
+            
+            if ($request->hasFile('image')) {
+                $request->validate([
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+                ]);
+            }
+            
             
             $partenaire->title = $request->input('title');
-            
             $partenaire->setTranslation('title', 'fr', $request->input('title_fr'));
+        
+            if ($request->hasFile('image')) {
+                $request->validate([
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+                ]);
+                
+                $image = $request->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension(); 
+                $image->move(public_path('partenaire'), $imageName); 
+        
+                $partenaire->image = $imageName;
+            }
+        
             
-            $partenaire->image = $request->input('image');
+            $partenaire->save();
+        
             
-            $partenaire->update();
-    
-         
             return redirect('/tables/partenaire');
-    
         }
         public function destroy($id){ 
             $partenaire=partenaireModel::getSingle($id);

@@ -39,21 +39,21 @@ class produitcontroller extends Controller
         $produit->created_by = Auth::user()->id;
         $produit->save();
     
-  // Create a gallery folder
+  
   $galleryNumber = $this->getGalleryNumber();
   $galleryPath = public_path('gallery' . $galleryNumber);
   if (!file_exists($galleryPath)) {
       mkdir($galleryPath, 0755, true);
   }
 
-// Handle multiple images
+
 if ($request->hasFile('images')) {
     foreach ($request->file('images') as $image) {
-        // Generate a unique filename
-        $filename = $image->getClientOriginalName(); // This might not be unique
-        // Move the uploaded file to the gallery folder
+        
+        $filename = $image->getClientOriginalName(); 
+        
         $image->move($galleryPath, $filename);
-        // Create a new ProduitImage instance and associate it with the produit
+       
         $produit->images()->create(['image' => 'gallery' . $galleryNumber . '/' . $filename]);
     }
 }
@@ -73,18 +73,11 @@ if ($request->hasFile('images')) {
         return redirect('/tables/produit');
     }
     
-    // Helper function to get the gallery number
-    private function getGalleryNumber()
-    {
-        $galleryNumber = Cache::get('gallery_number', 0);
-        $galleryNumber++;
-        Cache::put('gallery_number', $galleryNumber);
-        return $galleryNumber;
-    }
+    
     public function edit($id){
         $produit = produitModel::getSingle($id);
         $getcategory = categoriesModel::getRecord();
-        $produitImages = ProduitImage::where('produitmodel_id', $id)->get(); // Fetch produit images associated with the produit
+        $produitImages = ProduitImage::where('produitmodel_id', $id)->get(); 
         return view("admin.fiche.fiche-produit-edit", compact('produit', 'getcategory', 'produitImages'));
     }
     public function update(Request $request, $id){ 
@@ -94,18 +87,29 @@ if ($request->hasFile('images')) {
         $produit->category = $request->input('category');
         $produit->setTranslation('title', 'fr', $request->input('title_fr'));
         $produit->setTranslation('description', 'fr', $request->input('description_fr'));
+    
+    
+    if ($request->hasFile('images')) {
         
-        // Handle images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $key => $image) {
-                $imageName = uniqid().'_'.$key.'.'.$image->getClientOriginalExtension();
-                $image->move(public_path('gallery'.($key+1)), $imageName);
-                $produit->images()->create(['image' => $imageName]);
-            }
+        $produit->images()->delete();
+
+        foreach ($request->file('images') as $key => $image) {
+            $imageName = uniqid().'_'.$key.'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('gallery'.($key+1)), $imageName);
+            $produit->images()->create(['image' => $imageName]);
         }
-        
+    }
+    
         $produit->save();
         return redirect('/tables/produit');
+    }
+    
+    private function getGalleryNumber()
+    {
+        $galleryNumber = Cache::get('gallery_number', 0);
+        $galleryNumber++;
+        Cache::put('gallery_number', $galleryNumber);
+        return $galleryNumber;
     }
     public function destroy($id){ 
         $produit=produitModel::getSingle($id);

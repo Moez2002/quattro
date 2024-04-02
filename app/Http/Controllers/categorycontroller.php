@@ -27,15 +27,15 @@ class categorycontroller extends Controller
     public function insert1(request $request){
 
         $request->validate([
-            // Add validation rules for other fields as needed
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for image upload
+            
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
     
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Generate unique file name
-            $image->move(public_path('categories'), $imageName); // Move the uploaded file to the public/categories directory
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); 
+            $image->move(public_path('categories'), $imageName); 
         }
 
         $title=trim($request->title);
@@ -70,10 +70,9 @@ class categorycontroller extends Controller
 
         
     }
-    public function update( request $request, $id){ 
-       
-       
-        $categories=categoriesModel::getSingle($id);
+    public function update(Request $request, $id)
+    { 
+        $categories = categoriesModel::getSingle($id);
         
         $categories->title = $request->input('title');
         $categories->description = $request->input('description');
@@ -81,13 +80,22 @@ class categorycontroller extends Controller
         $categories->setTranslation('title', 'fr', $request->input('title_fr'));
         $categories->setTranslation('description', 'fr', $request->input('description_fr'));
         $categories->setTranslation('sub_category', 'fr', $request->input('sub_category_fr'));
-        $categories->image = $request->input('image');
+    
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            ]);
+            
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); 
+            $image->move(public_path('categories'), $imageName); 
+    
+            $categories->image = $imageName;
+        }
         
-        $categories->update();
-
-     
+        $categories->save();
+    
         return redirect('/tables/categories');
-
     }
     public function destroy($id){ 
         $categories=categoriesModel::getSingle($id);

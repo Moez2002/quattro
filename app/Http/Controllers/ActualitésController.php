@@ -27,15 +27,15 @@ class ActualitésController extends Controller
     }
     public function insert(request $request){
         $request->validate([
-            // Add validation rules for other fields as needed
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for image upload
+            
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
     
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Generate unique file name
-            $image->move(public_path('actualités'), $imageName); // Move the uploaded file to the public/actualités directory
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); 
+            $image->move(public_path('actualités'), $imageName); 
         }
 
 
@@ -73,22 +73,30 @@ class ActualitésController extends Controller
 
         
     }
-    public function update( request $request, $id){ 
-       
-       
-        $actualités=ActualitésModel::getSingle($id);
+    public function update(Request $request, $id)
+    { 
+        $actualités = ActualitésModel::getSingle($id);
         
         $actualités->title = $request->input('title');
         $actualités->description = $request->input('description');
         $actualités->setTranslation('title', 'fr', $request->input('title_fr'));
         $actualités->setTranslation('description', 'fr', $request->input('description_fr'));
-        $actualités->image = $request->input('image');
+    
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            ]);
+            
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); 
+            $image->move(public_path('actualités'), $imageName); 
+    
+            $actualités->image = $imageName;
+        }
         
-        $actualités->update();
-
-     
+        $actualités->save();
+    
         return redirect('/tables/actualités');
-
     }
     public function destroy($id){ 
         $actualités=ActualitésModel::getSingle($id);
