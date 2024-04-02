@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class categoriesmodel extends Model
+class cataloguemodel extends Model
 {
     use HasTranslations;
     use HasFactory;
-    protected $table="categories";
-    public $translatable = ['title','description','sub_category'];
+    protected $table="catalogue";
+    public $translatable = ['title'];
     static public function checkSlug($slug){
         return self::where('slug','=',$slug)->count();
     }
@@ -19,9 +19,9 @@ class categoriesmodel extends Model
         return self::find($id);
     }
     static public function getRecord() {
-        return self::select('categories.*')
-        ->join('users', 'users.id', '=', 'categories.created_by')
-        ->orderBy('categories.id', 'desc')
+        return self::select('catalogue.*')
+        ->join('users', 'users.id', '=', 'catalogue.created_by')
+        ->orderBy('catalogue.id', 'desc')
         ->get();
     }
 }

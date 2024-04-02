@@ -13,6 +13,10 @@ class produitmodel extends Model
     use HasTranslations;
     
     protected $table="produit";
+    public function images()
+{
+    return $this->hasMany(ProduitImage::class);
+}
     public $translatable = ['title','description','category','sub_category'];
     protected $casts = [
         'category' => 'array',

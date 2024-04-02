@@ -55,8 +55,8 @@
                                         <label class="form-label">sub_category (en)</label>
                                         <select class="form-control" name="sub_category">
                                             <option value="">Select</option>
-                                            @foreach($getsubcategory as $value)
-                                                <option {{($value->title==$produit->sub_category) ? 'selected':''}} value="{{$value->title}}">{{$value->title}}</option>
+                                            @foreach($getcategory as $value)
+                                                <option {{($value->sub_category==$produit->sub_category) ? 'selected':''}} value="{{$value->sub_category}}">{{$value->sub_category}}</option>
                                             @endforeach
                                         </select>    
                                         
@@ -84,11 +84,65 @@
                                 </div>
                                 </div>
                             </div>
-                                @if($produit->image)
-                                    <img src="{{asset('upload/categories/'.$produit->image)}}" style="width:600px; height:200px;" alt=""/>
-                                @endif 
-                  
-                                <div class="dropify-wrapper"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input  type="file"  name="image" multiple accept="image/*" class="dropify"><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div>
+                                
+                            <div class="row">
+    @if($produitImages)
+        @foreach($produitImages as $key => $image)
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Image {{ $key + 1 }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="dropify-wrapper">
+                        <div class="dropify-preview">
+                            <span class="dropify-render">
+                                <img src="{{ asset('public/gallery'.($key+1).'/'.$image->image) }}" style="max-height: 200px;" alt="Image {{ $key + 1 }}">
+                            </span>
+                        </div>
+                        <div class="dropify-infos">
+                            <div class="dropify-infos-inner">
+                                <p class="dropify-filename">
+                                    <span class="file-icon"></span> <span class="dropify-filename-inner"></span>
+                                </p>
+                                <p class="dropify-infos-message">Drag and drop or click to replace</p>
+                            </div>
+                        </div>
+                        <input type="file" name="images[]" class="form-control dropify" accept="image/*" data-default-file="{{ asset('public/gallery'.($key+1).'/'.$image->image) }}">
+                        <button type="button" class="dropify-clear">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    @endif
+    @for ($i = count($produitImages ?? []); $i < 8; $i++)
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Image {{ $i + 1 }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="dropify-wrapper">
+                    <div class="dropify-preview">
+                        <span class="dropify-render"></span>
+                    </div>
+                    <div class="dropify-infos">
+                        <div class="dropify-infos-inner">
+                            <p class="dropify-filename">
+                                <span class="file-icon"></span> <span class="dropify-filename-inner"></span>
+                            </p>
+                            <p class="dropify-infos-message">Drag and drop or click to replace</p>
+                        </div>
+                    </div>
+                    <input type="file" name="images[]" class="form-control dropify" accept="image/*">
+                    <button type="button" class="dropify-clear">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endfor
+</div>
                                 <button href="{{asset("/tables/produit")}}"  class="btn btn-primary mb-15" type="submit" style="position:relative; left:900px; width: 100px; height: 40px;">
                                     <i class="icon wb-plus" aria-hidden="true" ></i> Update 
                                 </button>

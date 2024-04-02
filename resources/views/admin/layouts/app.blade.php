@@ -12,6 +12,11 @@
 
 <!-- Bootstrap Core and vandor -->
 <link href="{{ asset('/public/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('/public/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" />
+<link rel="stylesheet" href="{{ asset('/public/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" />
+<link rel="stylesheet" href="{{ asset('/public/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/public/assets/plugins/multi-select/css/multi-select.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/assets/plugins/dropify/css/dropify.min.css') }}">
 
 <!-- Plugins css -->
 

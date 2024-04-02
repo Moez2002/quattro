@@ -86,7 +86,7 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                           @foreach($getRecord as $value) 
+                                        @foreach($getRecord as $value) 
                                             <tr class="gradeA">
 
                                                 <td>{{$value->category}}</td>

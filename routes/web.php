@@ -6,6 +6,8 @@ use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\ActualitésController;
 use App\Http\Controllers\sub_categorycontroller;
 use App\Http\Controllers\produitcontroller;
+use App\Http\Controllers\partenairecontroller;
+use App\Http\Controllers\cataloguecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,13 +61,6 @@ route::put('/fiche/fiche-categories-update/{id}',[categorycontroller::class,'upd
 route::get('/fiche/fiche-categories/{id}',[categorycontroller::class,'destroy'])->name('destroy');
 
 
-route::get('/tables/sub_categories',[sub_categorycontroller::class,'list'])->name('list');
-route::get('/fiche/fiche-sub_categories',[sub_categorycontroller::class,'add']);
-route::post('/fiche/fiche-sub_categories',[sub_categorycontroller::class,'insert2'])->name('insert2');
-route::get('/fiche/fiche-sub_categories-edit/{id}',[sub_categorycontroller::class,'edit'])->name('edit');
-route::put('/fiche/fiche-sub_categories-update/{id}',[sub_categorycontroller::class,'update'])->name('update');
-route::get('/fiche/fiche-sub_categories/{id}',[sub_categorycontroller::class,'destroy'])->name('destroy');
-
 
 route::get('/tables/produit',[produitcontroller::class,'list'])->name('list');
 route::get('/fiche/fiche-produit',[produitcontroller::class,'add']);
@@ -73,6 +68,22 @@ route::post('/fiche/fiche-produit',[produitcontroller::class,'insert3'])->name('
 route::get('/fiche/fiche-produit-edit/{id}',[produitcontroller::class,'edit'])->name('edit');
 route::put('/fiche/fiche-produit-update/{id}',[produitcontroller::class,'update'])->name('update');
 route::get('/fiche/fiche-produit/{id}',[produitcontroller::class,'destroy'])->name('destroy');
+
+
+route::get('/tables/partenaire',[partenairecontroller::class,'list'])->name('list');
+route::get('/fiche/fiche-partenaire',[partenairecontroller::class,'add']);
+route::post('/fiche/fiche-partenaire',[partenairecontroller::class,'insert4'])->name('insert4');
+route::get('/fiche/fiche-partenaire-edit/{id}',[partenairecontroller::class,'edit'])->name('edit');
+route::put('/fiche/fiche-partenaire-update/{id}',[partenairecontroller::class,'update'])->name('update');
+route::get('/fiche/fiche-partenaire/{id}',[partenairecontroller::class,'destroy'])->name('destroy');
+
+
+route::get('/tables/catalogue',[cataloguecontroller::class,'list'])->name('list');
+route::get('/fiche/fiche-catalogue',[cataloguecontroller::class,'add']);
+route::post('/fiche/fiche-catalogue',[cataloguecontroller::class,'insert5'])->name('insert5');
+route::get('/fiche/fiche-catalogue-edit/{id}',[cataloguecontroller::class,'edit'])->name('edit');
+route::put('/fiche/fiche-catalogue-update/{id}',[cataloguecontroller::class,'update'])->name('update');
+route::get('/fiche/fiche-catalogue/{id}',[cataloguecontroller::class,'destroy'])->name('destroy');
 
 
 

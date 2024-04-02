@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 
-<title>Actualités</title>
+<title>catalogues</title>
 
 
     <div class="page">
@@ -11,7 +11,7 @@
             <div class="container-fluid">
                 <div class="page-header">
                     <div class="left">
-                        <h1 class="page-title">Actualités</h1>
+                        <h1 class="page-title">catalogues</h1>
                     </div>
                     <div class="right">
                         <div class="notification d-flex">
@@ -30,7 +30,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                         <div class="card-header">
-                                <h3 class="card-title">Actualités list</h3>
+                                <h3 class="card-title">catalogues list</h3>
                             </div>
                             <div class="card-body">
                             <form action="{{route('list')}}" method="post"> 
@@ -39,8 +39,8 @@
                             
                              
                              {{ method_field('get') }}
-                                <a href="../fiche/fiche-actualités" class="btn btn-primary mb-15" type="submit" style="position:relative; left:925px; width: 150px; height: 40px;">
-                                    <i class="icon wb-plus" aria-hidden="true" ></i> Ajouter Actualités
+                                <a href="../fiche/fiche-catalogue" class="btn btn-primary mb-15" type="submit" style="position:relative; left:925px; width: 150px; height: 40px;">
+                                    <i class="icon wb-plus" aria-hidden="true" ></i> Ajouter catalogue
                                 </a>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-vcenter table-striped" cellspacing="0" id="addrowExample">
@@ -48,11 +48,10 @@
                                             <tr>
                                                   
                                                 <th>Title_en</th>
-                                                
                                                 <th>Titre_fr</th>
 
-                                                <th>Description</th>
-                                                <th>Description_fr</th>
+                                                <th>année</th>
+                                                
                                                 
                                                 <th>Créé à</th>
                                                 <th>Actions</th>
@@ -64,11 +63,10 @@
                                                 
                                                 
                                                 <th>Title_en</th>
-                                                
                                                 <th>Titre_fr</th>
 
-                                                <th>Description</th>
-                                                <th>Description_fr</th>
+                                                <th>année</th>
+                                                
                                                 
                                                 <th>Créé à</th>
                                                 <th>Actions</th>
@@ -80,12 +78,10 @@
                                             <tr class="gradeA">
                                             
                                                 
-                                                <td>{{$value->title}}</td>                                           
+                                                <td>{{$value->title}}</td>
                                                 <td>{{ $value->getTranslation('title', 'fr') }}</td>
-                                                <td>{{$value->description}}</td>
-                                                <td>{{ $value->getTranslation('description', 'fr') }}</td>
+                                                <td>{{$value->année}}</td>
 
-                                                
                                                 <td>{{$value->created_at}}</td>
                                                                                        
                                                 <td class="actions">                                                                                                    
@@ -94,10 +90,10 @@
                                                     <button class="btn btn-sm btn-icon on-editing button-discard"
                                                     data-toggle="tooltip" data-original-title="Discard" hidden><i class="icon-close" aria-hidden="true"></i></button>
                                                        
-                                                    <a href="{{url('/fiche/fiche-actualités-edit/' .$value->id )}}" class="btn btn-sm btn-icon on-default m-r-5 button-edit"
+                                                    <a href="{{url('/fiche/fiche-catalogue-edit/' .$value->id )}}" class="btn btn-sm btn-icon on-default m-r-5 button-edit"
                                                     data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></a>
-                                                    @can('delete actualités') 
-                                                    <a href="{{url('/fiche/fiche-actualités/' .$value->id)}}" class="btn btn-sm btn-icon on-default button-remove"
+                                                    @can('delete catalogue') 
+                                                    <a href="{{url('/fiche/fiche-catalogue/' .$value->id)}}" class="btn btn-sm btn-icon on-default button-remove"
                                                     data-toggle="tooltip" data-original-title="Remove"><i class="icon-trash" aria-hidden="true"></i></button>
                                                     @endcan
                                           
@@ -118,4 +114,3 @@
         </div>
     </div>  
 @endsection
-

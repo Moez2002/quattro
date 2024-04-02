@@ -26,13 +26,25 @@ class ActualitésController extends Controller
         return view("admin.fiche.fiche-actualités");
     }
     public function insert(request $request){
+        $request->validate([
+            // Add validation rules for other fields as needed
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for image upload
+        ]);
+
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Generate unique file name
+            $image->move(public_path('actualités'), $imageName); // Move the uploaded file to the public/actualités directory
+        }
+
+
 
         $title=trim($request->title);
         $actualités=new ActualitésModel;
         $actualités->title=['en'=>$request->title, 'fr'=>$request->title_fr];
         $actualités->description=['en'=>$request->description, 'fr'=>$request->description_fr];
-        
-        $actualités->image= trim($request->image);
+        $actualités->image = $imageName;
         $actualités->created_by = Auth::User()->id;
         $actualités->save();
 
@@ -47,11 +59,13 @@ class ActualitésController extends Controller
             $actualités->slug=$new_slug;
             $actualités->save();
         }
+    
 
         
       
        return redirect('/tables/actualités');
-    }
+    
+}
     public function edit($id){
         $actualités = ActualitésModel::getSingle($id);
         return view("admin.fiche.fiche-actualités-edit", compact('actualités'));

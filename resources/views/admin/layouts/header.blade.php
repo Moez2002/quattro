@@ -22,7 +22,7 @@
 
     <!-- Notification and  Activity-->
     <div id="rightsidebar" class="right_sidebar">
-        <a href="{{asset("javascript:void(0)")}}" class="p-3 settingbar float-right"><i class="fa fa-close"></i></a>
+        <a href="javascript:void(0)" class="p-3 settingbar float-right"><i class="fa fa-close"></i></a>
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#notification" aria-expanded="true">Notification</a></li>
             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#activity" aria-expanded="false">Activity</a></li>
@@ -161,8 +161,8 @@
                 <li class="list-group-item">October 22th, 1990</li>
             </ul>
             <div class="card-body">
-                <a href="javascript:void(0);" class="card-link">View More</a>
-                <a href="javascript:void(0);" class="card-link">Another link</a>
+                <a href="javascript:void(0)" class="card-link">View More</a>
+                <a href="javascript:void(0)" class="card-link">Another link</a>
             </div>
         </div>
         <div class="card">
@@ -237,8 +237,10 @@
                         <li>
                             <a href="{{asset("/tables/categories")}}" ><i class="icon-grid"></i><span data-hover="Categories">Categories</span></a>                            
                         </li>
-                        <li><a href="{{asset("/tables/sub_categories")}}"><i class="fe fe-list"></i><span data-hover="Sub-Categories">Sub-Categories</span></a></li>
+
                         <li><a href="{{asset("/tables/produit")}}"><i class="fe fe-package"></i><span data-hover="Produit">Produit</span></a></li>
+                        <li><a href="{{asset("/tables/partenaire")}}"><i class="fe fe-award"></i><span data-hover="Partenaire">Partenaire</span></a></li>
+                        <li><a href="{{asset("/tables/catalogue")}}"><i class="fe fe-book-open"></i><span data-hover="Catalogue">Catalogue</span></a></li>
 
                         <li><a href="{{asset('/users')}}"><i class="fe fe-users"></i><span data-hover="Users">Users</span></a></li>              
 

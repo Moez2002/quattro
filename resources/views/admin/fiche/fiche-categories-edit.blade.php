@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                                 @if($categories->image)
-                                    <img src="{{asset('upload/categories/'.$categories->image)}}" style="width:600px; height:200px;" alt=""/>
+                                    <img src="{{asset('public/categories/'.$categories->image)}}" style="width:600px; height:200px;" alt=""/>
                                 @endif 
                   
                                 <div class="dropify-wrapper"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input  type="file"  name="image" multiple accept="image/*" class="dropify"><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div>

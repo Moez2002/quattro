@@ -49,6 +49,8 @@
                                                   
                                                 <th>Title_en</th>
                                                 <th>Titre_fr</th>
+                                                <th>sub_category_en</th>
+                                                <th>sub_category_fr</th>
 
                                                 <th>Description</th>
                                                 <th>Description_fr</th>
@@ -64,6 +66,8 @@
                                                 
                                                 <th>Title_en</th>
                                                 <th>Titre_fr</th>
+                                                <th>sub_category_en</th>
+                                                <th>sub_category_fr</th>
 
                                                 <th>Description</th>
                                                 <th>Description_fr</th>
@@ -79,7 +83,9 @@
                                             
                                                 
                                                 <td>{{$value->title}}</td>
-                                                <td>{{ $value->getTranslation('title', 'fr') }}</td>
+                                                <td>{{$value->getTranslation('title', 'fr') }}</td>
+                                                <td>{{$value->sub_category}}</td>
+                                                <td>{{ $value->getTranslation('sub_category', 'fr') }}</td>
                                                 <td>{{$value->description}}</td>
                                                 <td>{{ $value->getTranslation('description', 'fr') }}</td>
                                                 <td>{{$value->created_at}}</td>

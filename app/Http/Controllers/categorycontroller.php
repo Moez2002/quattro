@@ -26,11 +26,24 @@ class categorycontroller extends Controller
     }
     public function insert1(request $request){
 
+        $request->validate([
+            // Add validation rules for other fields as needed
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for image upload
+        ]);
+
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Generate unique file name
+            $image->move(public_path('categories'), $imageName); // Move the uploaded file to the public/categories directory
+        }
+
         $title=trim($request->title);
         $categories=new categoriesModel;
         $categories->title=['en'=>$request->title, 'fr'=>$request->title_fr];
         $categories->description=['en'=>$request->description, 'fr'=>$request->description_fr];
-        $categories->image= trim($request->image);
+        $categories->sub_category=['en'=>$request->sub_category, 'fr'=>$request->sub_category_fr];
+        $categories->image = $imageName;
         $categories->created_by = Auth::User()->id;
         $categories->save();
 
@@ -64,8 +77,10 @@ class categorycontroller extends Controller
         
         $categories->title = $request->input('title');
         $categories->description = $request->input('description');
+        $categories->sub_category = $request->input('sub_category');
         $categories->setTranslation('title', 'fr', $request->input('title_fr'));
         $categories->setTranslation('description', 'fr', $request->input('description_fr'));
+        $categories->setTranslation('sub_category', 'fr', $request->input('sub_category_fr'));
         $categories->image = $request->input('image');
         
         $categories->update();
