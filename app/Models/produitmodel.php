@@ -17,12 +17,12 @@ class produitmodel extends Model
 {
     return $this->hasMany(ProduitImage::class);
 }
-    public $translatable = ['title','description','category','sub_category'];
+    public $translatable = ['title','description','mini_description'];
     protected $casts = [
         'category' => 'array',
-        'sub_category' => 'array'
-
+        'subcategory' => 'array',
     ];
+
 
     static public function checkSlug($slug){
         return self::where('slug','=',$slug)->count();
@@ -31,7 +31,7 @@ class produitmodel extends Model
         return self::find($id);
     }
     static public function getRecord() {
-        return self::select('produit.*')
+        return self::select('produit.*', 'produit.title->en as Title_en','produit.description->en as description_en','produit.mini_description->en as mini_description_en')
         ->join('users', 'users.id', '=', 'produit.created_by')
         ->orderBy('produit.id', 'desc')
         ->get();

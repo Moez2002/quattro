@@ -11,7 +11,7 @@ class categoriesmodel extends Model
     use HasTranslations;
     use HasFactory;
     protected $table="categories";
-    public $translatable = ['title','description','sub_category'];
+    public $translatable = ['name','description','mini_description'];
     static public function checkSlug($slug){
         return self::where('slug','=',$slug)->count();
     }

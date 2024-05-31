@@ -40,22 +40,38 @@
                              <div class="row">
                                 <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="form-label">Name (en)</label>
+                                    <input type="text" class="form-control" value="{{$actualités->name}}"  name="name" placeholder="Text..">
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label">Title (en)</label>
                                     <input type="text" class="form-control" value="{{$actualités->title}}"  name="title" placeholder="Text..">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Description (en) <span class="form-label-small">56/100</span></label>
-                                    <textarea class="form-control"   name="description"   rows="6" placeholder="Content..">{{$actualités->description}}</textarea>
+                                    <label class="form-label">Description (en)</label>
+                                    <input type="text" class="form-control" value="{{$actualités->description}}"  name="description" placeholder="Text..">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Long description (en) <span class="form-label-small">56/100</span></label>
+                                    <textarea class="form-control"   name="longdescription"   rows="6" placeholder="Content..">{{$actualités->longdescription}}</textarea>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Name (fr)</label>
+                                    <input type="text" class="form-control" value="{{$actualités->getTranslation('name', 'fr')}}"  name="name_fr" placeholder="Text..">
+                                </div>
                                 <div class="form-group">
                                     <label class="form-label">Titre (fr)</label>
                                     <input type="text" class="form-control" value="{{$actualités->getTranslation('title', 'fr')}}"  name="title_fr" placeholder="Text..">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Description (fr) <span class="form-label-small">56/100</span></label>
-                                    <textarea class="form-control"   name="description_fr"   rows="6" placeholder="Content..">{{$actualités->getTranslation('description', 'fr')}}</textarea>
+                                    <label class="form-label">Description (fr)</label>
+                                    <input type="text" class="form-control" value="{{$actualités->getTranslation('description', 'fr')}}"  name="description_fr" placeholder="Text..">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Long description (fr) <span class="form-label-small">56/100</span></label>
+                                    <textarea class="form-control"   name="longdescription_fr"   rows="6" placeholder="Content..">{{$actualités->getTranslation('longdescription', 'fr')}}</textarea>
                                 </div>
                                 </div>
                             </div>

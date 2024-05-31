@@ -10,7 +10,7 @@ class authcontroller extends Controller
 {
     public function login_admin(){
         if((Auth::check()&& auth::user()->is_admin==1)){
-            return redirect('admin/dashboard');
+            return redirect('/new/home1');
 
         }
        
@@ -20,7 +20,7 @@ class authcontroller extends Controller
         $remember = !empty($request ->remember) ? true : false;
         if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password,'is_admin'=>1 ], $remember))
         {
-            return redirect('admin/dashboard');
+            return redirect('/new/home1');
 
         }
         else

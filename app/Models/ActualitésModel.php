@@ -11,7 +11,7 @@ class ActualitésModel extends Model
     use HasTranslations;
     use HasFactory;
     protected $table="actualités";
-    public $translatable = ['title','description'];
+    public $translatable = ['longdescription','title','description','name'];
     static public function checkSlug($slug){
         return self::where('slug','=',$slug)->count();
     }
@@ -19,7 +19,7 @@ class ActualitésModel extends Model
         return self::find($id);
     }
     static public function getRecord() {
-        return self::select('actualités.*') 
+        return self::select('actualités.*','actualités.title->en as Title_en', 'actualités.name->en as name_en','actualités.description as description_en') 
         ->join('users', 'users.id', '=', 'actualités.created_by') 
         ->orderBy('actualités.id', 'desc') 
         ->get();

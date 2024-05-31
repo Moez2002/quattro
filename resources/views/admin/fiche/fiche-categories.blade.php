@@ -32,33 +32,45 @@
                                     <i class="icon wb-plus" aria-hidden="true" ></i> retour 
                              </a>
                              <div class="row">
+                             <div class="col-lg-12">
+                             
+                                <div class="form-group">
+                                    <label class="form-label">categorie parent</label>
+                                    <select class="form-control" name="category_id">
+                                         <option value="">No parent category</option>
+                                         @foreach($categories as $categorie)
+                                         @if($categorie->category_id == null)
+                                             <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                                         @endif    
+                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">categorie name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Text..">
+                                </div>
+                                </div>
+                                    
                                     <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label">Title (en)</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Text..">
+                                        <label class="form-label">Mini_description (en)</label>
+                                        <input type="text" class="form-control" name="mini_description" placeholder="Text..">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Description (en) <span class="form-label-small">56/100</span></label>
                                         <textarea class="form-control" name="description" rows="6" placeholder="Content.."></textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">sub_category (en)</label>
-                                        <input type="text" class="form-control" name="sub_category" placeholder="Text..">
-                                    </div>
+
 
                                     </div>
                                     <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label">Titre (fr)</label>
-                                        <input type="text" class="form-control" name="title_fr" placeholder="Text..">
+                                        <label class="form-label">Mini Description (fr)</label>
+                                        <input type="text" class="form-control" name="mini_description_fr" placeholder="Text..">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Description (fr) <span class="form-label-small">56/100</span></label>
                                         <textarea class="form-control" name="description_fr" rows="6" placeholder="Content.."></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">sub_category (fr)</label>
-                                        <input type="text" class="form-control" name="sub_category_fr" placeholder="Text..">
                                     </div>
                                     </div>
                                 </div>

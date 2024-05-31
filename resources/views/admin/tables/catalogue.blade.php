@@ -94,7 +94,7 @@
                                                     data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></a>
                                                     @can('delete catalogue') 
                                                     <a href="{{url('/fiche/fiche-catalogue/' .$value->id)}}" class="btn btn-sm btn-icon on-default button-remove"
-                                                    data-toggle="tooltip" data-original-title="Remove"><i class="icon-trash" aria-hidden="true"></i></button>
+                                                    data-toggle="tooltip" data-original-title="Remove" onclick="confirmation3(event)"><i class="icon-trash" aria-hidden="true"></i></button>
                                                     @endcan
                                           
                                                 </td>

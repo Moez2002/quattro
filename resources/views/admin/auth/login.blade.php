@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="../public/assets/css/theme4.css" id="stylesheet"/>
 
 </head>
-<body class="font-opensans">
+<body>
 <div class="auth">
     <div class="card"> 
     <div class="text-center mb-5">

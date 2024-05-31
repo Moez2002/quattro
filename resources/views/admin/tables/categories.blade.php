@@ -47,10 +47,10 @@
                                         <thead>
                                             <tr>
                                                   
-                                                <th>Title_en</th>
-                                                <th>Titre_fr</th>
-                                                <th>sub_category_en</th>
-                                                <th>sub_category_fr</th>
+                                                <th>Categorie</th>
+                                                
+                                                
+                                                
 
                                                 <th>Description</th>
                                                 <th>Description_fr</th>
@@ -64,10 +64,10 @@
                                             <tr>
                                                 
                                                 
-                                                <th>Title_en</th>
-                                                <th>Titre_fr</th>
-                                                <th>sub_category_en</th>
-                                                <th>sub_category_fr</th>
+                                                <th>Categorie</th>
+                                                
+                                                
+                                                
 
                                                 <th>Description</th>
                                                 <th>Description_fr</th>
@@ -80,14 +80,14 @@
                                         <tbody>
                                            @foreach($getRecord as $value) 
                                             <tr class="gradeA">
+                                            <td> {{ $value->name }} </td>
                                             
                                                 
-                                                <td>{{$value->title}}</td>
-                                                <td>{{$value->getTranslation('title', 'fr') }}</td>
-                                                <td>{{$value->sub_category}}</td>
-                                                <td>{{ $value->getTranslation('sub_category', 'fr') }}</td>
-                                                <td>{{$value->description}}</td>
-                                                <td>{{ $value->getTranslation('description', 'fr') }}</td>
+                                                
+                                                
+                                                
+                                                <td>{{$value->mini_description}}</td>
+                                                <td>{{ $value->getTranslation('mini_description', 'fr') }}</td>
                                                 <td>{{$value->created_at}}</td>
                                                                                        
                                                 <td class="actions">                                                                                                    
@@ -100,7 +100,7 @@
                                                     data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></a>
                                                     @can('delete categories') 
                                                     <a href="{{url('/fiche/fiche-categories/' .$value->id)}}" class="btn btn-sm btn-icon on-default button-remove"
-                                                    data-toggle="tooltip" data-original-title="Remove"><i class="icon-trash" aria-hidden="true"></i></button>
+                                                    data-toggle="tooltip" data-original-title="Remove" onclick="confirmation2(event)"><i class="icon-trash" aria-hidden="true"></i></button>
                                                     @endcan
                                           
                                                 </td>

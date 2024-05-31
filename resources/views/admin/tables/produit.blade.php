@@ -22,6 +22,7 @@
                 </div>
             </div>
         </div>
+
         <div class="section-body">
             <div class="container-fluid">                 
                 
@@ -29,7 +30,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                         <div class="card-header">
-                                <h3 class="card-title">Produit list</h3>
+                                <h3 class="card-title">Produits list</h3>
                             </div>
                             <div class="card-body">
                             <form action="{{route('list')}}" method="post"> 
@@ -47,14 +48,15 @@
                                             <tr>
                                             
                                                 <th>category</th>
-                                                <th>sub_category</th>
+                                                <th>sub category</th>
+                                                
                                                 
 
                                                 <th>Title_en</th>
-                                                <th>Titre_fr</th>
+                                                
 
                                                 <th>Description</th>
-                                                <th>Description_fr</th>
+                                                
 
                                                 
                                                 
@@ -68,15 +70,16 @@
                                                 
                                             
                                                 <th>category</th>
-                                                <th>sub_category</th>
+                                                <th>sub category</th>
+                                                
 
                                                 <th>Title_en</th>
-                                                <th>Titre_fr</th>
+                                                
 
                                                 
 
                                                 <th>Description</th>
-                                                <th>Description_fr</th>
+                                                
 
                                                 
                                                 
@@ -90,11 +93,11 @@
                                             <tr class="gradeA">
 
                                                 <td>{{$value->category}}</td>
-                                                <td>{{$value->sub_category}}</td>
+                                                <td>{{$value->subcategory}}</td>
                                                 <td>{{$value->title}}</td>
-                                                <td>{{ $value->getTranslation('title', 'fr') }}</td>
+                                                
                                                 <td>{{$value->description}}</td>
-                                                <td>{{ $value->getTranslation('description', 'fr') }}</td>
+                                                
                                                 <td>{{$value->created_at}}</td>
                                                                                        
                                                 <td class="actions">                                                                                                    
@@ -107,9 +110,8 @@
                                                     data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></a>
                                                     @can('delete produit') 
                                                     <a href="{{url('/fiche/fiche-produit/' .$value->id)}}" class="btn btn-sm btn-icon on-default button-remove"
-                                                    data-toggle="tooltip" data-original-title="Remove"><i class="icon-trash" aria-hidden="true"></i></button>
-                                                    @endcan
-                                          
+                                                    data-toggle="tooltip" data-original-title="Remove" onclick="confirmation(event)"><i class="icon-trash" aria-hidden="true"></i></button>
+                                                    @endcan                      
                                                 </td>
                                                 
                                               

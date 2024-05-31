@@ -95,9 +95,9 @@
                                                     </a>
                                                     <a href="{{ url('users/' .$user->id.'/edit')}}" class="btn btn-sm btn-icon on-default m-r-5 button-edit"
                                                     data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></a>
-                                                    @can('delete user') 
+                                                    @can('delete users') 
                                                     <a href="{{ url('users/' .$user->id.'/delete')}}" class="btn btn-sm btn-icon on-default button-remove"
-                                                    data-toggle="tooltip" data-original-title="Remove"><i class="icon-trash" aria-hidden="true"></i></button>
+                                                    data-toggle="tooltip" data-original-title="Remove" onclick="confirmation1(event)"><i class="icon-trash" aria-hidden="true"></i></button>
                                                     @endcan
                                           
                                                 </td>

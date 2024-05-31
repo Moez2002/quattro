@@ -6,14 +6,13 @@
             <div class="hleft">
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="nav-link user_btn"><img  src="{{asset('upload/actualités/quattro.png')}}" alt=""/></a>
-                    <a href="page-search.html" class="nav-link icon"><i class="fa fa-search"></i></a>
-                    <a href="{{asset('/admin/dashboard')}}" class="nav-link icon"><i class="fa fa-home"></i></a>
+                    <a href="{{asset('/new/home1')}}" class="nav-link icon"><i class="fa fa-home"></i></a>
                   
                 </div>
             </div>
             <div class="hright">
                 <div class="dropdown">
-                    <a href="javascript:void(0)" class="nav-link icon settingbar"><i class="fa fa-bell"></i></a>
+                    
                     <a href="javascript:void(0)" class="nav-link icon menu_toggle"><i class="fa fa-navicon"></i></a>
                 </div>            
             </div>
@@ -206,25 +205,19 @@
                 <a class="theme4" data-toggle="tooltip" title="Theme Cascade" href="#" onclick="setStyleSheet('../public/assets/css/theme4.css', 0);"></a>
             </div>
         </div>
-        <div class="input-icon">
-            <span class="input-icon-addon">
-                <i class="fe fe-search"></i>
-            </span>
-            <input type="text" class="form-control" placeholder="Search...">
-        </div>
+        
 
         <div class="tab-content">
             <div class="tab-pane fade active show" id="all-tab">
                 <nav class="sidebar-nav">
                     <ul class="metismenu ci-effect-1">
-                        <li class="g_heading">Directories</li>
-                        <li>
-                            <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="icon-home"></i><span data-hover="Dashboard">Dashboard</span></a>
-                            <ul>
-                                <li><a href="{{asset("/admin/dashboard")}}"><span data-hover="Web Analytics">Web Analytics</span></a></li>
-                              
-                            </ul>
-                        </li>
+                        <li class="g_heading">Pages</li>
+                        <li><a href="{{asset("/new/home1")}}"><i class="icon-home"></i><span data-hover="Home">Home</span></a></li>
+                        <li><a href="{{asset("/new/coordonnees")}}"><i class="fe fe-file-text"></i><span data-hover="Coordonnées">Cordonnées</span></a></li>
+                        <li><a href="{{asset("/new/aboutus1")}}"><i class="icon-users"></i><span data-hover="AboutUs">About Us</span></a></li>
+                        <li><a href="{{asset("/new/contact1")}}"><i class="fe fe-phone"></i><span data-hover="Contact">Contact</span></a></li>
+
+                    
                         <li><a href="{{asset("/tables/actualités")}}"><i class="fa fa-newspaper-o"></i><span data-hover="Actualités">Actualités</span></a></li>
                         
                         <li>
@@ -239,12 +232,10 @@
                         </li>
 
                         <li><a href="{{asset("/tables/produit")}}"><i class="fe fe-package"></i><span data-hover="Produit">Produit</span></a></li>
-                        <li><a href="{{asset("/tables/partenaire")}}"><i class="fe fe-award"></i><span data-hover="Partenaire">Partenaire</span></a></li>
                         <li><a href="{{asset("/tables/catalogue")}}"><i class="fe fe-book-open"></i><span data-hover="Catalogue">Catalogue</span></a></li>
 
                         <li><a href="{{asset('/users')}}"><i class="fe fe-users"></i><span data-hover="Users">Users</span></a></li>              
 
-                        <li class="g_heading">Utilities</li>
                         
                        
                                       
@@ -254,10 +245,7 @@
                             <a href="javascript:void(0)" class="has-arrow arrow-b"><i class="icon-lock"></i><span data-hover="Authentication">Authentication</span></a>
                             <ul>
                                 <li><a href="../auth/login"><span data-hover="Login">Login</span></a></li>
-                                <li><a href="register.html"><span data-hover="Register">Register</span></a></li>
-                                <li><a href="forgot-password.html"><span data-hover="Forgot">Forgot password</span></a></li>
-                                <li><a href="404.html"><span data-hover="404">404 error</span></a></li>
-                                <li><a href="500.html"><span data-hover="500">500 error</span></a></li>   
+                                 
                             </ul>
                         </li>
         

@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="{{asset('/public/assets/css/main.css')}}"/>
 <link rel="stylesheet" href="{{asset('/public/assets/css/theme4.css')}}" id="stylesheet"/>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <body class="font-opensans">
 
@@ -61,6 +62,114 @@
 <!-- Start core js and page js -->
 <script src="{{asset("/public/assets/js/core.js")}}"></script>
 <script src="{{asset("/public/assets/js/table/datatable.js")}}"></script>
+<script>
+      function confirmation(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+        console.log(urlToRedirect); 
+        swal({
+            title: "Voulez-vous supprimer ce produit?",
+            text: "Vous ne pourrez pas revenir en arrière !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel) => {
+            if (willCancel) {
+
+
+                 
+                window.location.href = urlToRedirect;
+               
+            }  
+
+
+        });
+
+        
+    }
+</script>
+<script>
+      function confirmation1(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+        console.log(urlToRedirect); 
+        swal({
+            title: "Voulez-vous supprimer cet utilisateur?",
+            text: "Vous ne pourrez pas revenir en arrière !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel) => {
+            if (willCancel) {
+
+
+                 
+                window.location.href = urlToRedirect;
+               
+            }  
+
+
+        });
+
+        
+    }
+</script>
+<script>
+      function confirmation2(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+        console.log(urlToRedirect); 
+        swal({
+            title: "Voulez-vous supprimer cette catégorie?",
+            text: "Vous ne pourrez pas revenir en arrière !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel) => {
+            if (willCancel) {
+
+
+                 
+                window.location.href = urlToRedirect;
+               
+            }  
+
+
+        });
+
+        
+    }
+</script>
+<script>
+      function confirmation3(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');  
+        console.log(urlToRedirect); 
+        swal({
+            title: "Voulez-vous vraiment supprimer cet élément ?",
+            text: "Vous ne pourrez pas revenir en arrière !",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel) => {
+            if (willCancel) {
+
+
+                 
+                window.location.href = urlToRedirect;
+               
+            }  
+
+
+        });
+
+        
+    }
+</script>
 </body>
 </html>
 

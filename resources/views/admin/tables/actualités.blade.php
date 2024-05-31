@@ -46,13 +46,13 @@
                                     <table class="table table-hover table-vcenter table-striped" cellspacing="0" id="addrowExample">
                                         <thead>
                                             <tr>
-                                                  
-                                                <th>Title_en</th>
                                                 
-                                                <th>Titre_fr</th>
+                                                <th>Name</th>
+                                                <th>Title</th>
+                                                
 
                                                 <th>Description</th>
-                                                <th>Description_fr</th>
+                                                
                                                 
                                                 <th>Créé à</th>
                                                 <th>Actions</th>
@@ -62,13 +62,12 @@
                                         <tfoot>
                                             <tr>
                                                 
+                                                <th>Name</th>
+                                                <th>Title</th>
                                                 
-                                                <th>Title_en</th>
-                                                
-                                                <th>Titre_fr</th>
 
                                                 <th>Description</th>
-                                                <th>Description_fr</th>
+                                                
                                                 
                                                 <th>Créé à</th>
                                                 <th>Actions</th>
@@ -79,11 +78,11 @@
                                            @foreach($getRecord as $value) 
                                             <tr class="gradeA">
                                             
-                                                
+                                                <td>{{$value->name}}</td> 
                                                 <td>{{$value->title}}</td>                                           
-                                                <td>{{ $value->getTranslation('title', 'fr') }}</td>
+                                                
                                                 <td>{{$value->description}}</td>
-                                                <td>{{ $value->getTranslation('description', 'fr') }}</td>
+                                                
 
                                                 
                                                 <td>{{$value->created_at}}</td>
@@ -98,7 +97,7 @@
                                                     data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></a>
                                                     @can('delete actualités') 
                                                     <a href="{{url('/fiche/fiche-actualités/' .$value->id)}}" class="btn btn-sm btn-icon on-default button-remove"
-                                                    data-toggle="tooltip" data-original-title="Remove"><i class="icon-trash" aria-hidden="true"></i></button>
+                                                    data-toggle="tooltip" data-original-title="Remove" onclick="confirmation3(event)"><i class="icon-trash" aria-hidden="true"></i></button>
                                                     @endcan
                                           
                                                 </td>

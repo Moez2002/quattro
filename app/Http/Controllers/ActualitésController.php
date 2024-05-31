@@ -40,15 +40,17 @@ class ActualitésController extends Controller
 
 
 
-        $title=trim($request->title);
+        $name=trim($request->name);
         $actualités=new ActualitésModel;
+        $actualités->name=['en'=>$request->name, 'fr'=>$request->name_fr];
         $actualités->title=['en'=>$request->title, 'fr'=>$request->title_fr];
         $actualités->description=['en'=>$request->description, 'fr'=>$request->description_fr];
+        $actualités->longdescription=['en'=>$request->longdescription, 'fr'=>$request->longdescription_fr];
         $actualités->image = $imageName;
         $actualités->created_by = Auth::User()->id;
         $actualités->save();
 
-        $slug=Str::slug($title,'-');
+        $slug=Str::slug($name,'-');
         $checkSlug=ActualitésModel::checkSlug($slug);
         if(empty($checkSlug)){
             $actualités->slug=$slug;
@@ -76,9 +78,11 @@ class ActualitésController extends Controller
     public function update(Request $request, $id)
     { 
         $actualités = ActualitésModel::getSingle($id);
+        $actualités->name = $request->input('name');
         
         $actualités->title = $request->input('title');
         $actualités->description = $request->input('description');
+        $actualités->longdescription = $request->input('longdescription');
         $actualités->setTranslation('title', 'fr', $request->input('title_fr'));
         $actualités->setTranslation('description', 'fr', $request->input('description_fr'));
     

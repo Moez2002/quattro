@@ -12,7 +12,7 @@ class categorycontroller extends Controller
     public function __construct()
     {
       $this->middleware('permission:view categories', ['only'=>['list']]);
-      $this->middleware('permission:create categories', ['only'=>['add','insert']]);
+      $this->middleware('permission:create categories', ['only'=>['add','insert1']]);
       $this->middleware('permission:update categories', ['only'=>['update','edit']]);
       $this->middleware('permission:delete categories', ['only'=>['destroy']]);
   
@@ -22,13 +22,15 @@ class categorycontroller extends Controller
         return view("admin.tables.categories", $data);
     }
     public function add(){
-        return view("admin.fiche.fiche-categories");
+        $categories =categoriesModel::whereNull('category_id')->get();
+        return view("admin.fiche.fiche-categories",compact('categories'));
     }
     public function insert1(request $request){
+        $imageName='';
 
         $request->validate([
             
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
     
@@ -38,16 +40,23 @@ class categorycontroller extends Controller
             $image->move(public_path('categories'), $imageName); 
         }
 
-        $title=trim($request->title);
+        $name=trim($request->name);
         $categories=new categoriesModel;
-        $categories->title=['en'=>$request->title, 'fr'=>$request->title_fr];
+        $categories->name=['en'=>$request->name, 'fr'=>$request->name_fr];
+        $categories->mini_description=['en'=>$request->mini_description, 'fr'=>$request->mini_description_fr];
         $categories->description=['en'=>$request->description, 'fr'=>$request->description_fr];
-        $categories->sub_category=['en'=>$request->sub_category, 'fr'=>$request->sub_category_fr];
         $categories->image = $imageName;
         $categories->created_by = Auth::User()->id;
         $categories->save();
 
-        $slug=Str::slug($title,'-');
+        if ($request->has('category_id')) {
+            $categories->category_id = $request->category_id;
+        } else {
+            // If no parent category is selected, set category_id to null
+            $categories->category_id = null;
+        }
+
+        $slug=Str::slug($name,'-');
         $checkSlug=categoriesModel::checkSlug($slug);
         if(empty($checkSlug)){
             $categories->slug=$slug;
@@ -62,10 +71,11 @@ class categorycontroller extends Controller
         
       
        return redirect('/tables/categories');
-    }
+    } 
     public function edit($id){
         $categories = categoriesModel::getSingle($id);
-        return view("admin.fiche.fiche-categories-edit", compact('categories'));
+        $parentCategories = categoriesModel::whereNull('category_id')->get();
+        return view("admin.fiche.fiche-categories-edit", compact('categories','parentCategories'));
        
 
         
@@ -74,12 +84,10 @@ class categorycontroller extends Controller
     { 
         $categories = categoriesModel::getSingle($id);
         
-        $categories->title = $request->input('title');
+        $categories->name = $request->input('name');
         $categories->description = $request->input('description');
-        $categories->sub_category = $request->input('sub_category');
-        $categories->setTranslation('title', 'fr', $request->input('title_fr'));
+        $categories->mini_description = $request->input('mini_description');
         $categories->setTranslation('description', 'fr', $request->input('description_fr'));
-        $categories->setTranslation('sub_category', 'fr', $request->input('sub_category_fr'));
     
         if ($request->hasFile('image')) {
             $request->validate([
@@ -94,10 +102,11 @@ class categorycontroller extends Controller
         }
         
         $categories->save();
+
     
         return redirect('/tables/categories');
     }
-    public function destroy($id){ 
+     public function destroy($id){ 
         $categories=categoriesModel::getSingle($id);
         $categories->delete();
         return redirect()->back();

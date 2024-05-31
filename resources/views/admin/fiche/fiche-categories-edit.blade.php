@@ -38,11 +38,30 @@
                                     <i class="icon wb-plus" aria-hidden="true" ></i> Retour 
                              </a>
                              <div class="row">
+                             <div class="col-lg-12">
+                             <div class="form-group">
+                                <label class="form-label">categorie parent</label>
+                                <select class="form-control" name="category_id">
+                                    <option value="">No parent category</option>
+                                    @foreach($parentCategories as $parentCategory)
+                                        <option value="{{ $parentCategory->id }}" {{ $parentCategory->id == $categories->category_id ? 'selected' : '' }}>
+                                        {{ $parentCategory->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+
+                                
+                                <div class="form-group">
+                                    <label class="form-label">categorie name </label>
+                                    <input type="text" class="form-control" name="name" placeholder="Text.." value="{{ $categories->name }}">
+                                </div>
+                                </div>
                                 
                                 <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Title (en)</label>
-                                    <input type="text" class="form-control" value="{{$categories->title}}"  name="title" placeholder="Text..">
+                                    <label class="form-label">Mini Description (en)</label>
+                                    <input type="text" class="form-control" value="{{$categories->mini_description}}"  name="mini_description" placeholder="Text..">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Description (en) <span class="form-label-small">56/100</span></label>
@@ -51,14 +70,15 @@
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Titre (fr)</label>
-                                    <input type="text" class="form-control" value="{{$categories->getTranslation('title', 'fr')}}"  name="title_fr" placeholder="Text..">
+                                    <label class="form-label">Mini Description (fr)</label>
+                                    <input type="text" class="form-control" value="{{$categories->getTranslation('mini_description', 'fr')}}"  name="mini_description_fr" placeholder="Text..">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Description (fr) <span class="form-label-small">56/100</span></label>
                                     <textarea class="form-control"   name="description_fr"   rows="6" placeholder="Content..">{{$categories->getTranslation('description', 'fr')}}</textarea>
                                 </div>
                                 </div>
+                                
                             </div>
                                 @if($categories->image)
                                     <img src="{{asset('public/categories/'.$categories->image)}}" style="width:600px; height:200px;" alt=""/>
